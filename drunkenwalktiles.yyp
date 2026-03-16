@@ -36,6 +36,7 @@
   },
   "name":"drunkenwalktiles",
   "resources":[
+    {"id":{"name":"pb","path":"notes/pb/pb.yy",},},
     {"id":{"name":"obj_map_generate","path":"objects/obj_map_generate/obj_map_generate.yy",},},
     {"id":{"name":"rm_dungeon","path":"rooms/rm_dungeon/rm_dungeon.yy",},},
     {"id":{"name":"rm_start","path":"rooms/rm_start/rm_start.yy",},},

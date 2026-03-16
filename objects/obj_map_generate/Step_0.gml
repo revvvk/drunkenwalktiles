@@ -14,9 +14,7 @@ if(keyboard_check_released(ord("R"))){
 
 
 // --- DEBUG DE ZOOM ---
-
 // Captura a roda do mouse (scroll)
-
 var _wheel = mouse_wheel_down() - mouse_wheel_up();
 
 if (_wheel != 0) {
