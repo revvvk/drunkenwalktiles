@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_map_autotile",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_map_autotile",
+  "parent":{
+    "name":"MAP",
+    "path":"folders/Scripts/MAP.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

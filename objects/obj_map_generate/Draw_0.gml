@@ -1,0 +1,26 @@
+/// @description Insert description here
+// You can write your code in this editor
+
+
+//se desenhando
+draw_self();
+
+//percorre o array e atribui o sprite correto para a posição
+for(var _i = 0; _i < MAP_WIDTH; _i++){
+    for(var _j = 0; _j < MAP_HEIGHT; _j++){
+        //calcula a posição correta e tamanho de cada tile
+        var _pos_x = _i * TILE_SIZE;
+        var _pos_y = _j * TILE_SIZE;
+        
+        //se a posição for parede
+        if(map_dungeon[_i][_j] == TILE_WALL){
+            //desenha sprite da parede
+            draw_sprite(spr_wall, 0, _pos_x, _pos_y);
+        }
+        //se a posição for chão
+        if(map_dungeon[_i][_j] == TILE_FLOOR){
+            //desenha sprite do chão
+            draw_sprite(spr_floor, 0, _pos_x, _pos_y);
+        }
+    }
+}
