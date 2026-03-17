@@ -38,7 +38,6 @@
   "resources":[
     {"id":{"name":"pb","path":"notes/pb/pb.yy",},},
     {"id":{"name":"obj_map_generate","path":"objects/obj_map_generate/obj_map_generate.yy",},},
-    {"id":{"name":"rm_dungeon","path":"rooms/rm_dungeon/rm_dungeon.yy",},},
     {"id":{"name":"rm_start","path":"rooms/rm_start/rm_start.yy",},},
     {"id":{"name":"scr_macros_tiles","path":"scripts/scr_macros_tiles/scr_macros_tiles.yy",},},
     {"id":{"name":"scr_map_autotile","path":"scripts/scr_map_autotile/scr_map_autotile.yy",},},
@@ -54,7 +53,6 @@
   "resourceVersion":"2.0",
   "RoomOrderNodes":[
     {"roomId":{"name":"rm_start","path":"rooms/rm_start/rm_start.yy",},},
-    {"roomId":{"name":"rm_dungeon","path":"rooms/rm_dungeon/rm_dungeon.yy",},},
   ],
   "templateType":"game",
   "TextureGroups":[
