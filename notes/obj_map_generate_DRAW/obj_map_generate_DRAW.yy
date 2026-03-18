@@ -1,7 +1,7 @@
 {
   "$GMNotes":"v1",
-  "%Name":"pb",
-  "name":"pb",
+  "%Name":"obj_map_generate_DRAW",
+  "name":"obj_map_generate_DRAW",
   "parent":{
     "name":"Notes",
     "path":"folders/Notes.yy",

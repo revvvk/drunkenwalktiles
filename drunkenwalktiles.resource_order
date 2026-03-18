@@ -20,7 +20,9 @@
   "ResourceOrderSettings":[
     {"name":"rm_start","order":1,"path":"rooms/rm_start/rm_start.yy",},
     {"name":"scr_map_autotile","order":2,"path":"scripts/scr_map_autotile/scr_map_autotile.yy",},
+    {"name":"scr_map_cleanup","order":4,"path":"scripts/scr_map_cleanup/scr_map_cleanup.yy",},
     {"name":"scr_map_drunken_walk","order":1,"path":"scripts/scr_map_drunken_walk/scr_map_drunken_walk.yy",},
+    {"name":"scr_map_refine","order":3,"path":"scripts/scr_map_refine/scr_map_refine.yy",},
     {"name":"spr_floor","order":2,"path":"sprites/spr_floor/spr_floor.yy",},
     {"name":"spr_tileset_dungeon","order":3,"path":"sprites/spr_tileset_dungeon/spr_tileset_dungeon.yy",},
     {"name":"spr_wall","order":1,"path":"sprites/spr_wall/spr_wall.yy",},

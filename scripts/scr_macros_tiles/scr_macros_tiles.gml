@@ -5,8 +5,9 @@
 //MACROS
 
 //tamanho do mapa
-#macro MAP_WIDTH    100
-#macro MAP_HEIGHT   100
+#macro MAP_WIDTH    200
+#macro MAP_HEIGHT   200
+#macro PERCENTAGE   0.3 
 
 //tiles usados para o algoritmo
 #macro TILE_WALL    0

@@ -1,9 +1,11 @@
-
-
-
-
+/// @description Algoritmo que percorre o mapa e desenha as sprites corretas dos tiles
+/// @param {array} _map O mapa necessário para o algoritmo desenhar
+/// @param {real} _map_width Tamanho da largura do array 2D do mapa
+/// @param {real} _map_height Tamanho da altura do array 2D do mapa
 function scr_map_autotile(_map, _map_width, _map_height){ 
     var _tilemap = layer_tilemap_get_id("tl_dungeon");
+    tilemap_set_width(_tilemap, _map_width);
+    tilemap_set_height(_tilemap, _map_height);
     
     for(var _i = 0; _i < _map_width; _i++){
         for(var _j = 0; _j < _map_height; _j++){
@@ -36,6 +38,7 @@ function scr_map_autotile(_map, _map_width, _map_height){
                     (_map[_i - 1][_j + 1] == TILE_FLOOR && _map[_i][_j + 2] == TILE_FLOOR && _map[_i][_j - 1] == TILE_WALL))){
                     //sou o tile 26 - canto interior inferior esquerdo
                     _tile = 26
+                    //show_debug_message("tile 26 original capturou: " + string(_i) + "x" + string(_j));
                 }
                 //canto interior inferior direito
                 //se sou parede e tenho chão do meu lado direito e também tenho chão dois tiles abaixo de mim
@@ -71,6 +74,35 @@ function scr_map_autotile(_map, _map_width, _map_height){
                     _tile = 24;
                 }
                 
+                //caso o canto interior superior esquerdo encontre a face de outra parede na esquerda
+                else if(_map[_i][_j] == TILE_WALL &&
+                    _i > 0 &&
+                    _j > 0 &&
+                    _i + 1 < _map_width &&
+                    _j + 1 < _map_height &&
+                    _map[_i][_j - 1] == TILE_FLOOR &&
+                    _map[_i][_j + 1] == TILE_WALL &&
+                    _map[_i - 1][_j] == TILE_WALL &&
+                    _map[_i + 1][_j] == TILE_WALL &&
+                    _map[_i - 1][_j + 1] == TILE_FLOOR){
+                    _tile = 24;
+                }
+                
+                //caso o canto interior superior esquerdo encontre a face de outra parede na direita
+                else if(_map[_i][_j] == TILE_WALL &&
+                    _i > 0 &&
+                    _j > 0 &&
+                    _i + 1 < _map_width &&
+                    _j + 1 < _map_height &&
+                    _map[_i][_j - 1] == TILE_WALL &&
+                    _map[_i][_j + 1] == TILE_WALL &&
+                    _map[_i - 1][_j] == TILE_FLOOR &&
+                    _map[_i + 1][_j] == TILE_WALL &&
+                    _map[_i + 1][_j - 1] == TILE_FLOOR){
+                    _tile = 24;
+                }
+                
+                
                 //canto interior superior direito
                 //se sou parede e tenho chão acim e do meu lado direito
                 else if(_map[_i][_j] == TILE_WALL &&
@@ -80,6 +112,38 @@ function scr_map_autotile(_map, _map_width, _map_height){
                     _map[_i][_j - 1] == TILE_FLOOR){
                     //sou o tile 25 - canto interior superior direito
                     _tile = 25;
+                }
+                
+                //caso o canto interior superior direito encontre a face de outra parede na direita
+                else if(_map[_i][_j] == TILE_WALL &&
+                    _i > 0 &&
+                    _j > 0 &&
+                    _i + 1 < _map_width &&
+                    _j + 1 < _map_height &&
+                    _map[_i][_j - 1] == TILE_FLOOR &&
+                    _map[_i][_j + 1] == TILE_WALL &&
+                    _map[_i - 1][_j] == TILE_WALL &&
+                    _map[_i + 1][_j] == TILE_WALL && 
+                    _map[_i + 1][_j + 1] == TILE_FLOOR){
+                    //sou o tile 25 - canto interior superior direito
+                    _tile = 25;
+                }
+                
+                //caso o canto interior superior direito encontre a face de outra parede acima
+                else if(_map[_i][_j] == TILE_WALL &&
+                    _i > 0 &&
+                    _j > 0 &&
+                    _i + 1 < _map_width &&
+                    _j + 1 < _map_height &&
+                    _map[_i][_j - 1] == TILE_WALL &&
+                    _map[_i][_j + 1] == TILE_WALL &&
+                    _map[_i - 1][_j] == TILE_WALL &&
+                    _map[_i + 1][_j] == TILE_FLOOR &&
+                    _map[_i - 1][_j - 1] == TILE_FLOOR){
+                    //canto interior superior direito
+                    _tile = 25;
+                    
+                    //show_debug_message("tile colocado 25")
                 }
                 
                 //borda de baixo
@@ -92,6 +156,60 @@ function scr_map_autotile(_map, _map_width, _map_height){
                     //sou o tile 22 - borda de baixo do mapa
                     _tile = 22;
                 }
+                
+                //desenha face da parede quando encontra uma quina de borda interior abaixo
+                else if(_map[_i][_j] == TILE_WALL &&
+                    _i > 0 &&
+                    _j > 0 &&
+                    _i + 1 < _map_width &&
+                    _j + 1 < _map_height &&
+                    _map[_i - 1][_j] == TILE_FLOOR &&
+                    _map[_i][_j + 1] == TILE_WALL &&
+                    _map[_i - 1][_j + 1] == TILE_WALL &&
+                    _map[_i + 1][_j + 1] == TILE_FLOOR){
+                    //miolo da parede
+                    _tile = 2;
+                }
+                
+                //desenha a face da parede quando encontra uma quina de borda interior abaixo indo pra direita
+                else if(_map[_i][_j] == TILE_WALL &&
+                    _i > 0 &&
+                    _j > 0 &&
+                    _i + 1 < _map_width &&
+                    _j + 1 < _map_height &&
+                    _map[_i + 1][_j] == TILE_FLOOR &&
+                    _map[_i][_j + 1] == TILE_WALL &&
+                    _map[_i - 1][_j + 1] == TILE_FLOOR &&
+                    _map[_i + 1][_j + 1] == TILE_WALL){
+                    _tile = 2;
+                }
+                
+                //canto interior inferior esquerdo, acima da face definida pelo caso anterior
+                else if(_map[_i][_j] == TILE_WALL &&
+                    _i > 0 &&
+                    _j > 0 &&
+                    _i + 1 < _map_width &&
+                    _j + 2 < _map_height &&
+                    _map[_i - 1][_j] == TILE_FLOOR &&
+                    _map[_i - 1][_j + 1] == TILE_FLOOR &&
+                    _map[_i + 1][_j + 2] == TILE_FLOOR){
+                    _tile = 26;
+                    
+                    
+                }
+                
+                //canto interior inferior esquerdo, acima da face definida pelo caso anterior também
+                else if(_map[_i][_j] == TILE_WALL &&
+                    _i > 0 &&
+                    _j > 0 &&
+                    _i + 1 < _map_width &&
+                    _j + 2 < _map_height &&
+                    _map[_i + 1][_j] == TILE_FLOOR &&
+                    _map[_i + 1][_j + 1] == TILE_FLOOR &&
+                    _map[_i - 1][_j + 2] == TILE_FLOOR){
+                    _tile = 27;
+                }
+                
                 
                 //parede vertical da esquerda
                 //se sou parede e ao meu lado direito é chão OU o tile do lado direito é chão e abaixo dele também
@@ -159,6 +277,7 @@ function scr_map_autotile(_map, _map_width, _map_height){
                     //sou o tile 23 - canto inferior dirieto
                     _tile = 23;
                 }
+                
                 
                 //aplica os tiles corretamente
                 tilemap_set(_tilemap, _tile, _i, _j);

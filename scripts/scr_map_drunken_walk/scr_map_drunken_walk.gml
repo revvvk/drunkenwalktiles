@@ -16,8 +16,25 @@ function scr_map_drunken_walk(_map, _map_width, _map_height, _percentage){
     //número de tiles de chão criados (começa em 0)
     var _tiles_floor_created = 1;
     
-    //definindo a posição inicial do bebado como chão
-    _map[_walker_position_x][_walker_position_y] = TILE_FLOOR;
+    //tamanho que o bebado vai marcar como caminho
+    var _brush_size = 5;
+    
+    //criando o bebado no meio da sala com o tamanho de 4 tiles
+    for(var _i = 0; _i < _brush_size; _i++){
+        for(var _j = 0; _j < _brush_size; _j++){
+            var _dxw = _walker_position_x + _i;
+            var _dyw = _walker_position_y + _j;
+            
+            if(_dxw - _map_width - _map_frame && _dyw - _map_height - _map_frame){
+                if(_map[_dxw][_dyw] != TILE_FLOOR){
+                    //definindo a posição inicial do bebado como chão
+                    _map[_dxw][_dyw] = TILE_FLOOR;
+                    _tiles_floor_created++;
+                }
+            }
+        }
+    }
+    
     
     //erro para quando a porcentagem de meta de tiles for inválida
     var _max_percentage = (MAP_WIDTH - _map_frame * 2) * (MAP_HEIGHT - _map_frame * 2) / (_map_width * _map_height);
@@ -37,24 +54,25 @@ function scr_map_drunken_walk(_map, _map_width, _map_height, _percentage){
         //direção aleatória que o bêbado vai andar
         //0 cima, 1 baixo, 2 esquerda e 3 direita
         var _walker_direction = irandom(3);
+        var _steps_size = 5;
         
         //move o bebado conforme a direção sorteada
         switch(_walker_direction){
             //cima
         	case 0:
-                _walker_position_y -= 1;
+                _walker_position_y -= _steps_size;
             break;
             //baixo
             case 1:
-                _walker_position_y += 1;
+                _walker_position_y += _steps_size;
             break;
             //esquerda
             case 2:
-                _walker_position_x -= 1;
+                _walker_position_x -= _steps_size;
             break;
             //direita
             case 3:
-                _walker_position_x += 1;
+                _walker_position_x += _steps_size;
             break;
         }
         
@@ -72,8 +90,6 @@ function scr_map_drunken_walk(_map, _map_width, _map_height, _percentage){
             //_tiles_floor_created++;
         //}
         
-        //tamanho que o bebado vai marcar como caminho
-        var _brush_size = 2;
         //loops que percorrem as colunas e linhas do bloco
         for(var _i = 0; _i < _brush_size; _i++){
             for(var _j = 0; _j < _brush_size; _j++){

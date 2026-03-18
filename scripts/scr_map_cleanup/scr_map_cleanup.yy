@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_map_cleanup",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_map_cleanup",
+  "parent":{
+    "name":"MAP",
+    "path":"folders/Scripts/MAP.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}
